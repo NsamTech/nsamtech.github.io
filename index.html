@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nsam Technologies | Pre-Council and Council exam practice for nurses and midwives</title>
+<meta name="description" content="Computer-based practice exams for midwifery and nursing students preparing for pre-council and council exams.">
+<link rel="icon" type="image/png" href="favicon.png"><text y='.9em' font-size='90'>🩺</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0e2a3b;--teal:#1b3fa8;--teal-d:#12297a;--mint:#e8edfb;--paper:#f7fafa;--gold:#f2a516;--line:#d5e3e3;--mute:#4d6572}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Public Sans',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;font-size:16px}
+h1,h2,h3{font-family:'Bricolage Grotesque','Public Sans',sans-serif;line-height:1.15;letter-spacing:-.01em}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+section{padding:64px 0}
+h2{font-size:clamp(26px,4vw,36px);margin-bottom:10px}
+.lead{color:var(--mute);max-width:56ch;margin-bottom:32px}
+.btn{display:inline-block;padding:13px 22px;border-radius:10px;font-weight:600;text-decoration:none;border:0;cursor:pointer;font:inherit;font-weight:600}
+.btn-p{background:var(--teal);color:#fff}.btn-p:hover{background:var(--teal-d)}
+.btn-g{background:var(--gold);color:var(--ink)}
+.btn:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+/* nav */
+nav{background:var(--ink);color:#fff;position:sticky;top:0;z-index:5}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:19px;text-decoration:none}
+.logo{display:flex;align-items:center;gap:10px}.logo img{height:42px;width:42px;background:#fff;border-radius:50%;padding:2px}
+.logo span{color:var(--gold)}
+details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:10px}
+summary{font-weight:600;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;font-size:18px}
+details p{margin-top:10px;color:var(--mute)}
+details[open]{border-color:var(--teal)}
+nav ul{display:flex;gap:22px;list-style:none;font-size:15px}
+nav ul a{text-decoration:none;opacity:.85}nav ul a:hover{opacity:1}
+@media(max-width:640px){nav ul li:not(:last-child){display:none}}
+/* hero */
+.hero{background:var(--ink);color:#fff;padding:56px 0 72px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(34px,6vw,56px);font-weight:800}
+.hero p{color:#c3d6dc;margin:18px 0 28px;max-width:46ch;font-size:18px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero .btn-o{border:1.5px solid #5d7d8b;color:#fff}
+.mock{background:#fff;color:var(--ink);border-radius:16px;padding:22px;box-shadow:0 24px 50px rgba(0,0,0,.35)}
+.mock .top{display:flex;justify-content:space-between;font-size:14px;color:var(--mute);margin-bottom:14px}
+.mock .top b{color:var(--teal);font-variant-numeric:tabular-nums}
+.mock h3{font-size:18px;margin-bottom:14px;font-weight:700}
+.opt{border:1.5px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:8px;font-size:15px}
+.opt.sel{border-color:var(--teal);background:var(--mint);font-weight:600}
+.bar{height:6px;background:var(--line);border-radius:3px;margin-top:14px}.bar i{display:block;width:34%;height:100%;background:var(--teal);border-radius:3px}
+@media(max-width:820px){.hero .wrap{grid-template-columns:1fr}}
+/* stats */
+.stats{background:#fff;border-bottom:1px solid var(--line);padding:26px 0}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center}
+.stats b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:28px;color:var(--teal)}
+.stats span{font-size:14px;color:var(--mute)}
+@media(max-width:640px){.stats .wrap{grid-template-columns:repeat(2,1fr)}}
+/* exams */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px}
+.card h3{font-size:24px;margin-bottom:8px}
+.card p{color:var(--mute);margin-bottom:18px}
+.card.soon{background:var(--mint);border-style:dashed}
+.tag{display:inline-block;background:var(--gold);color:var(--ink);font-size:13px;font-weight:600;padding:3px 10px;border-radius:20px;margin-bottom:12px}
+.tag.live{background:var(--teal);color:#fff}
+.notify{display:flex;gap:8px;flex-wrap:wrap}
+.notify input{flex:1 1 140px;padding:12px;border:1.5px solid var(--line);border-radius:10px;font:inherit;min-width:0}
+.hint{font-size:13px;color:var(--mute);margin-top:8px}
+@media(max-width:760px){.cards{grid-template-columns:1fr}}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--gold);font-weight:700;margin-bottom:12px}
+.steps b{display:block;margin-bottom:4px}.steps span{font-size:14px;color:var(--mute)}
+@media(max-width:820px){.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.steps{grid-template-columns:1fr}}
+/* past questions */
+.alt{background:#fff;border-block:1px solid var(--line)}
+.pq{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pq a{display:block;text-decoration:none;border:1px solid var(--line);border-radius:14px;padding:20px;background:var(--paper)}
+.pq a:hover{border-color:var(--teal)}
+.pq b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:19px}
+.pq span{font-size:14px;color:var(--mute)}
+@media(max-width:760px){.pq{grid-template-columns:1fr}}
+/* reviews */
+.rev{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rev figure{background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:12px;padding:22px}
+.rev blockquote{margin-bottom:12px}
+.rev figcaption{font-size:14px;color:var(--mute)}
+@media(max-width:760px){.rev{grid-template-columns:1fr}}
+/* about */
+.about{display:grid;grid-template-columns:240px 1fr;gap:40px;align-items:center}
+.about img{width:100%;max-width:240px;background:#fff;border-radius:50%;box-shadow:0 10px 30px rgba(14,42,59,.15)}
+.about p{color:#2c4452;margin-bottom:14px;max-width:62ch}
+.about .by{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:18px;margin-top:6px;color:var(--ink)}
+.about .by span{display:block;font-family:'Public Sans',sans-serif;font-weight:400;font-size:14px;color:var(--mute)}
+@media(max-width:700px){.about{grid-template-columns:1fr;text-align:left}.about img{max-width:160px}}
+/* footer */
+footer{background:var(--ink);color:#c3d6dc;padding:56px 0 28px}
+footer q{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(22px,3.6vw,32px);color:#fff;max-width:26ch;margin-bottom:28px;quotes:none}
+.fcols{display:flex;flex-wrap:wrap;gap:28px 60px;border-top:1px solid #2a4a5c;padding-top:24px;font-size:15px}
+.fcols a{display:block;text-decoration:none;margin-top:6px}.fcols a:hover{color:#fff}
+.fcols b{color:#fff}
+.copy{margin-top:28px;font-size:13px;color:#8aa4b0}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="index.html"><img src="logo.png" alt="Nsam Technologies logo">Nsam<span>Tech</span></a>
+    <ul>
+      <li><a href="#exams">Exams</a></li>
+      <li><a href="#past">Past questions</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Pass your pre-council and council exams with confidence</h1>
+      <p>Practise on the same kind of computer-based exam you will face. Timed papers, instant results, and explanations for every answer you miss.</p>
+      <div class="cta">
+        <a class="btn btn-g" href="https://nsamtech.github.io/nmcn-cbt/">Start midwifery exam</a>
+        <a class="btn btn-o" href="#how">See how it works</a>
+      </div>
+    </div>
+    <div class="mock" aria-hidden="true">
+      <div class="top"><span>Question 86 of 250</span><b id="clock">02:41:07</b></div>
+      <h3>Which of these is a sign of true labour?</h3>
+      <div class="opt">A. Irregular, painless contractions</div>
+      <div class="opt sel">B. Regular contractions with cervical dilatation</div>
+      <div class="opt">C. Relief of pain on walking</div>
+      <div class="opt">D. No change in the cervix</div>
+      <div class="bar"><i></i></div>
+    </div>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="wrap">
+    <div><b>3</b><span>papers</span></div>
+    <div><b>250</b><span>questions per paper</span></div>
+    <div><b>3 hrs</b><span>per paper, like the real exam</span></div>
+    <div><b>Instant</b><span>results and review</span></div>
+  </div>
+</div>
+
+<section id="exams">
+  <div class="wrap">
+    <h2>Choose your exam</h2>
+    <p class="lead">Pick your course of study and go straight to the practice room.</p>
+    <div class="cards">
+      <div class="card">
+        <span class="tag live">Open now</span>
+        <h3>Midwifery exam</h3>
+        <p>Three NMCN-style practice papers with a timer, paper PINs and full answer review.</p>
+        <a class="btn btn-p" href="https://nsamtech.github.io/nmcn-cbt/">Enter midwifery exam</a>
+      </div>
+      <div class="card soon">
+        <span class="tag">Coming soon</span>
+        <h3>Nursing exam</h3>
+        <p>We are preparing the nursing papers. Leave your name and number and we will message you on WhatsApp when they open.</p>
+        <form class="notify" id="notify">
+          <input type="text" id="nm" placeholder="Your name" required aria-label="Your name">
+          <input type="tel" id="ph" placeholder="WhatsApp number" required aria-label="WhatsApp number">
+          <button class="btn btn-p" type="submit">Notify me</button>
+        </form>
+        <p class="hint">This opens WhatsApp with your message ready to send.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="alt">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <p class="lead">From slip to score in four steps.</p>
+    <ol class="steps">
+      <li><b>Get your slip</b><span>It has your username and password.</span></li>
+      <li><b>Log in</b><span>Works on any phone or computer.</span></li>
+      <li><b>Enter the paper PIN</b><span>Each paper has its own PIN.</span></li>
+      <li><b>Write and review</b><span>See your score and learn from every miss.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="past">
+  <div class="wrap">
+    <h2>Past questions</h2>
+    <p class="lead">Practise with real exam-style questions, then check the explanation for every answer.</p>
+    <div class="pq">
+      <a href="https://nsamtech.github.io/nmcn-cbt/"><b>Midwifery Paper I</b><span>250 questions · open</span></a>
+      <a href="https://nsamtech.github.io/nmcn-cbt/"><b>Midwifery Paper II</b><span>250 questions · open</span></a>
+      <a href="https://nsamtech.github.io/nmcn-cbt/"><b>Midwifery Paper III</b><span>250 questions · open</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="alt">
+  <div class="wrap about">
+    <img src="logo.png" alt="Nsam Technologies logo">
+    <div>
+      <h2>Built by a student, for students</h2>
+      <p>Nsam Technologies started with one goal: to help students who dream of becoming licensed midwives and nurses to pass their council exams.</p>
+      <p>Many students read hard but never get to practise on a computer before the real exam. Nsam Technologies gives them a safe place to do that. You learn the material, practise under real exam conditions, and review every answer until you are ready to excel.</p>
+      <p>We are growing, with the midwifery papers open now and nursing papers on the way.</p>
+      <div class="by">Samuel Aisosa Osazee<span>Founder, Nsam Technologies<br>St Camillus College of Nursing Sciences, Uromi, Edo State, Nigeria</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <h2>What students say</h2>
+    <p class="lead">Real feedback from students who have practised on the portal.</p>
+    <div class="rev">
+      <figure><blockquote>[Replace with a real student comment]</blockquote><figcaption>Student name, school</figcaption></figure>
+      <figure><blockquote>[Replace with a real student comment]</blockquote><figcaption>Student name, school</figcaption></figure>
+      <figure><blockquote>[Replace with a real student comment]</blockquote><figcaption>Student name, school</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="alt">
+  <div class="wrap">
+    <h2>Frequently asked questions</h2>
+    <p class="lead">Everything you need to know before you log in.</p>
+    <details><summary>How do I log in?</summary><p>Use the username and password on your slip. Usernames look like DOM/3Y1S/05 and the password is 3 letters. Capital or small letters do not matter.</p></details>
+    <details><summary>What is the paper PIN?</summary><p>Each paper has its own PIN. After you log in, choose your paper, enter its PIN and tap Proceed to Exam Room.</p></details>
+    <details><summary>How long is each paper?</summary><p>Each paper has 250 questions and a 3-hour timer, like the real exam. The paper submits itself when the time ends.</p></details>
+    <details><summary>Will I lose my answers if my phone network drops?</summary><p>Your answers are saved as you go. If your result does not save at the end, tap Retry saving my result once your network is back.</p></details>
+    <details><summary>When do I see my score?</summary><p>Straight after you submit. You will see your result, the correct answers, and an explanation for the questions you missed.</p></details>
+    <details><summary>Can I use my phone?</summary><p>Yes. The portal works on phones, tablets and computers.</p></details>
+    <details><summary>Will the questions change?</summary><p>Yes. The questions in each paper are refreshed every few days, so check back and practise again.</p></details>
+    <details><summary>I forgot my password or my login says it is switched off. What do I do?</summary><p>Message the admin on WhatsApp at +234 708 106 4223 with your full name and username.</p></details>
+    <details><summary>Is there a nursing exam?</summary><p>It is coming soon. Use the Notify me box on the Nursing card and we will message you when it opens.</p></details>
+    <details><summary>Is my information safe?</summary><p>We only keep what the portal needs, such as your name, username and scores. Read our <a href="privacy.html">Privacy Policy</a> for details.</p></details>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <q>Every question you practise today is a life you will protect tomorrow.</q>
+    <div class="fcols">
+      <div><b>Nsam Technologies</b><br>Learn. Practice. Excel.</div>
+      <div><b>Exams</b><a href="https://nsamtech.github.io/nmcn-cbt/">Midwifery</a><a href="#exams">Nursing (coming soon)</a></div>
+      <div><b>Legal</b><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a></div>
+      <div><b>Contact</b><a href="https://wa.me/2347081064223">WhatsApp: +234 708 106 4223</a></div>
+    </div>
+    <p class="copy">&copy; <span id="yr">2026</span> Nsam Technologies. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+var t=2*3600+41*60+7,c=document.getElementById('clock');
+setInterval(function(){t=t>0?t-1:0;var h=Math.floor(t/3600),m=Math.floor(t%3600/60),s=t%60;
+c.textContent=[h,m,s].map(function(x){return String(x).padStart(2,'0')}).join(':')},1000);
+document.getElementById('notify').addEventListener('submit',function(e){
+  e.preventDefault();
+  var msg='Hello Nsam Technologies, please notify me when the Nursing exam opens. Name: '+document.getElementById('nm').value+', WhatsApp: '+document.getElementById('ph').value;
+  window.open('https://wa.me/2347081064223?text='+encodeURIComponent(msg),'_blank');
+});
+</script>
+</body>
+</html>
