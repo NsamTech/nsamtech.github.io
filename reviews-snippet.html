@@ -1,0 +1,84 @@
+<!-- ===== 1. REVIEW BOX (paste on the results screen) ===== -->
+<div id="reviewBox" style="max-width:420px;margin:16px auto;padding:16px;border:1px solid #ddd;border-radius:12px;font-family:sans-serif">
+  <h3 style="margin:0 0 8px">Rate this exam practice</h3>
+  <div id="stars" style="font-size:28px;cursor:pointer;user-select:none">
+    <span data-v="1">☆</span><span data-v="2">☆</span><span data-v="3">☆</span><span data-v="4">☆</span><span data-v="5">☆</span>
+  </div>
+  <textarea id="reviewText" rows="3" maxlength="300" placeholder="Write your review (max 300 characters)"
+    style="width:100%;margin-top:8px;padding:8px;box-sizing:border-box;border-radius:8px;border:1px solid #ccc"></textarea>
+  <button id="sendReview" style="margin-top:8px;padding:10px 16px;border:0;border-radius:8px;background:#0a7d4f;color:#fff">Submit review</button>
+  <p id="reviewMsg" style="margin:8px 0 0;font-size:14px"></p>
+</div>
+
+<!-- ===== 2. APPROVED REVIEWS (paste on nsamtech.com landing page) ===== -->
+<section id="reviewsSection" style="max-width:700px;margin:24px auto;font-family:sans-serif">
+  <h2>What students say</h2>
+  <div id="reviewsList"></div>
+</section>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, query, where, orderBy, limit, serverTimestamp }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+// Use the SAME config your CBT site already uses (projectId: n-sam-nmcn-cbt-quest)
+const app = initializeApp({
+  apiKey: "AIzaSyBPJUYDeCqBjrOLKToqacNEyy0-IMzBkBA",
+  authDomain: "n-sam-nmcn-cbt-quest.firebaseapp.com",
+  projectId: "n-sam-nmcn-cbt-quest",
+  storageBucket: "n-sam-nmcn-cbt-quest.firebasestorage.app",
+  messagingSenderId: "903051215543",
+  appId: "1:903051215543:web:8497b2bb0ded6da6710332"
+});
+const db = getFirestore(app);
+
+// Set these from your login/results code
+const studentName = window.currentStudentName || "Student";
+const username    = window.currentUsername || "";   // e.g. DOM/3Y1S/01
+const paper       = window.currentPaper || "";      // e.g. "Paper I"
+
+let rating = 0;
+const stars = document.querySelectorAll("#stars span");
+stars.forEach(s => s.onclick = () => {
+  rating = +s.dataset.v;
+  stars.forEach(x => x.textContent = +x.dataset.v <= rating ? "★" : "☆");
+});
+
+const btn = document.getElementById("sendReview");
+const msg = document.getElementById("reviewMsg");
+btn.onclick = async () => {
+  const text = document.getElementById("reviewText").value.trim();
+  if (!rating || text.length < 5) { msg.textContent = "Pick a star rating and write a short review."; return; }
+  btn.disabled = true;
+  try {
+    await addDoc(collection(db, "reviews"), {
+      name: studentName, username, paper, rating, text,
+      approved: false,            // you approve it first
+      createdAt: serverTimestamp()
+    });
+    msg.textContent = "Thank you! Your review was sent.";
+    document.getElementById("reviewText").value = "";
+  } catch (e) {
+    msg.textContent = "Could not send. Try again.";
+    btn.disabled = false;
+  }
+};
+
+// Show approved reviews only
+const list = document.getElementById("reviewsList");
+try {
+  const snap = await getDocs(query(collection(db, "reviews"),
+    where("approved", "==", true), orderBy("createdAt", "desc"), limit(10)));
+  list.innerHTML = snap.empty ? "<p>No reviews yet.</p>" : "";
+  snap.forEach(d => {
+    const r = d.data();
+    const p = document.createElement("div");
+    p.style.cssText = "padding:12px;border-bottom:1px solid #eee";
+    p.innerHTML = `<div>${"★".repeat(r.rating)}${"☆".repeat(5 - r.rating)}</div>
+                   <div></div><small></small>`;
+    p.children[1].textContent = r.text;
+    p.children[2].textContent = "- " + r.name;
+    list.appendChild(p);
+  });
+} catch (e) { /* section stays empty */ }
+</script>
